@@ -9,7 +9,6 @@ import { Profile, ProfileContext } from "../state/profile";
 import { Button } from "./button";
 import { IconSmall } from "./icon";
 import { Input } from "./input";
-import { Padding } from "./padding";
 import { ClientConfigContext } from "../state/config";
 
 
