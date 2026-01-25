@@ -19,54 +19,41 @@ export function Header({ children }: { children?: React.ReactNode }) {
 
     return useMemo(() => (
         <>
-            <div className="fixed z-40">
-                <div className="w-screen">
-                    <Padding className="mx-4 mt-4">
-                        <div className="w-full flex justify-between items-center">
-                            <Link aria-label={t('home')} href="/"
-                                className="hidden opacity-0 md:opacity-100 duration-300 mr-auto md:flex flex-row items-center">
-                                <img src={process.env.AVATAR} alt="Avatar" className="w-12 h-12 rounded-2xl border-2" />
-                                <div className="flex flex-col justify-center items-start mx-4">
-                                    <p className="text-xl font-bold dark:text-white">
+            <div className="sticky top-0 z-40 w-full bg-w border-b border-neutral-200 dark:border-neutral-800 backdrop-blur-md bg-opacity-90 dark:bg-opacity-90 transition-colors duration-300">
+                <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="flex justify-between items-center h-16">
+                        {/* Logo / Brand */}
+                        <div className="flex-shrink-0 flex items-center">
+                            <Link aria-label={t('home')} href="/" className="flex flex-row items-center gap-3">
+                                <img src={process.env.AVATAR} alt="Avatar" className="w-8 h-8 rounded-lg" />
+                                <div className="flex flex-col justify-center items-start">
+                                    <p className="text-lg font-bold t-primary leading-none">
                                         {process.env.NAME}
-                                    </p>
-                                    <p className="text-xs text-neutral-500">
-                                        {process.env.DESCRIPTION}
                                     </p>
                                 </div>
                             </Link>
-                            <div
-                                className="w-full md:w-max transition-all duration-500 md:absolute md:left-1/2 md:translate-x-[-50%] flex-row justify-center items-center">
-                                <div
-                                    className="flex flex-row items-center bg-w t-primary rounded-full px-2 shadow-xl shadow-light">
-                                    <Link aria-label={t('home')} href="/"
-                                        className="visible opacity-100 md:hidden md:opacity-0 duration-300 mr-auto flex flex-row items-center py-2">
-                                        <img src={process.env.AVATAR} alt="Avatar"
-                                            className="w-10 h-10 rounded-full border-2" />
-                                        <div className="flex flex-col justify-center items-start mx-2">
-                                            <p className="text-sm font-bold">
-                                                {process.env.NAME}
-                                            </p>
-                                            <p className="text-xs text-neutral-500">
-                                                {process.env.DESCRIPTION}
-                                            </p>
-                                        </div>
-                                    </Link>
-                                    <NavBar menu={false} />
-                                    {children}
-                                    <Menu />
-                                </div>
-                            </div>
-                            <div className="ml-auto hidden opacity-0 md:opacity-100 duration-300 md:flex flex-row items-center space-x-2">
+                        </div>
+
+                        {/* Desktop Navigation */}
+                        <div className="hidden md:flex flex-row items-center space-x-1">
+                            <NavBar menu={false} />
+                            {children}
+                        </div>
+
+                        {/* Right Side Actions */}
+                        <div className="flex items-center space-x-2">
+                            <div className="hidden md:flex items-center space-x-2">
                                 <SearchButton />
                                 <LanguageSwitch />
                                 <UserAvatar profile={profile} />
                             </div>
+                            {/* Mobile Menu Button */}
+                            <Menu />
                         </div>
-                    </Padding>
+                    </div>
                 </div>
             </div>
-            <div className="h-20"></div>
+            {/* Spacer for content if needed, though sticky header doesn't overlap flow if position is sticky */}
         </>
     ), [profile, children])
 }
@@ -83,7 +70,7 @@ function NavItem({ menu, title, selected, href, when = true, onClick }: {
         <>
             {when &&
                 <Link href={href}
-                    className={`${menu ? "" : "hidden"} md:block cursor-pointer hover:text-theme duration-300 px-2 py-4 md:p-4 text-sm ${selected ? "text-theme" : "dark:text-white"}`}
+                    className={`${menu ? "block w-full text-left px-4 py-2" : "hidden md:block"} text-sm font-medium transition-colors duration-200 ${selected ? "text-theme" : "text-neutral-600 dark:text-neutral-300 hover:text-theme dark:hover:text-theme"} px-3 py-2 rounded-md`}
                     state={{ animate: true }}
                     onClick={onClick}
                 >

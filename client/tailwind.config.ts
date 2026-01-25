@@ -8,14 +8,14 @@ export default {
   theme: {
     extend: {
       colors: {
-        'theme': '#fc466b',
-        'theme-hover': '#b13049',
-        'theme-active': '#972038',
+        'theme': '#2563eb',
+        'theme-hover': '#1d4ed8',
+        'theme-active': '#1e40af',
         'background': {
-          'light': '#f5f5f5',
-          'dark': '#1c1c1e',
+          'light': '#ffffff',
+          'dark': '#0f172a',
         },
-        'dark': "#333333"
+        'dark': "#1e293b"
       },
       transitionProperty: {
         'height': 'height',
